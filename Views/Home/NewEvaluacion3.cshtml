@@ -1,0 +1,64 @@
+﻿@model chaves_dayron_proyecto2_3101.Models.evaluacion
+
+@{
+    ViewBag.Title = "NewEvaluacion3";
+}
+
+<h2>Documentar la evaluacion</h2>
+
+
+@using (Html.BeginForm("NewEvaluacion3", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+
+        @Html.HiddenFor(model => model.empleado_id)
+
+        @Html.HiddenFor(model => model.reunion_id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.objetivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.objetivo, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div>
+                @Html.ValidationMessageFor(model => model.objetivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.seguimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.seguimiento, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div>
+                @Html.ValidationMessageFor(model => model.seguimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.retroalimentacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.retroalimentacion, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div>
+                @Html.ValidationMessageFor(model => model.retroalimentacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar Evaluacion" class="btn btn-primary btn-md" />
+            </div>
+            <a style="color:red"><small><i>Esta accion se reportará.</i></small></a>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

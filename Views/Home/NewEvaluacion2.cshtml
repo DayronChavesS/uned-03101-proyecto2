@@ -1,0 +1,45 @@
+﻿@using chaves_dayron_proyecto2_3101.Models
+@model Tuple<List<SelectListItem>, int, int>
+
+@{
+    ViewBag.Title = "NewEvaluacion2";
+}
+
+
+@if (@Model.Item1.Count == 0)
+{
+    <h5>Aun no hay reuniones agendas para este empleado.</h5>
+    <br>
+    @Html.ActionLink("« Volver", "NewEvaluacion1", "Home", new { @class = "btn btn-primary btn-md" })
+}
+else
+{
+    <h2>Seleccione la reunion</h2>
+    using (Html.BeginForm("NewEvaluacion2", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+
+            @Html.HiddenFor(model => model.Item2)
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Item3, @Model.Item1)
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Continuar »" class="btn btn-primary btn-md" />
+                </div>
+            </div>
+        </div>
+    }
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

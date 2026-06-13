@@ -1,0 +1,479 @@
+﻿@model chaves_dayron_proyecto2_3101.Models.edit_empleado
+
+@{
+    ViewBag.Title = "Editar Empleado";
+}
+
+@{
+    string currentDate = DateTime.Today.ToString("{0:yyyy-MM-dd}");
+}
+
+<h2>Actualice los datos: </h2>
+
+
+@using (Html.BeginForm("EditEmpleado", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <br />
+        <hr />
+        <h5>Informacion personal</h5>
+        <hr />
+        <br />
+
+        @Html.HiddenFor(model => model.persona.persona_id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.persona.cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.persona.cedula, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.persona.cedula, "", new { @class = "text-danger" })
+                @Html.ValidationMessage("CedulaExist", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.persona.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.persona.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.persona.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.persona.apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.persona.apellido, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.persona.apellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.persona.direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.persona.direccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.persona.direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.persona.correo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.persona.correo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.persona.correo, "", new { @class = "text-danger" })
+                @Html.ValidationMessage("CorreoExist", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.persona.telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.persona.telefono, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.persona.telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+        <hr />
+        <h5>Informacion laboral</h5>
+        <hr />
+        <br />
+
+        @Html.HiddenFor(model => model.empleado.empleado_id)
+        @Html.HiddenFor(model => model.empleado.persona_id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.empleado.departamento_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.empleado.departamento_id, Model.departamento)
+                @Html.ValidationMessageFor(model => model.empleado.departamento_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.empleado.puesto_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.empleado.puesto_id, Model.puesto)
+                @Html.ValidationMessageFor(model => model.empleado.puesto_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.empleado.desde_fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.empleado.desde_fecha, new { @type = "date", @value = @currentDate, @min = @currentDate })
+                @Html.ValidationMessageFor(model => model.empleado.desde_fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+        <hr />
+        <h5>Roles</h5>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_auxiliar.isProprietario, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.rol_auxiliar.isProprietario)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_auxiliar.isAdministrador, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.rol_auxiliar.isAdministrador)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_auxiliar.isContribuidor, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.rol_auxiliar.isContribuidor)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_auxiliar.isLector, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.rol_auxiliar.isLector)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_auxiliar.isInvitado, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.rol_auxiliar.isInvitado)
+        </div>
+
+        <hr />
+        <h5>Permisos</h5>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.permiso_auxiliar.hasAccesoTotal, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.permiso_auxiliar.hasAccesoTotal)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.permiso_auxiliar.hasEjecucion, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.permiso_auxiliar.hasEjecucion)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.permiso_auxiliar.hasEscritura, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.permiso_auxiliar.hasEscritura)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.permiso_auxiliar.hasLectura, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.permiso_auxiliar.hasLectura)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.permiso_auxiliar.hasNinguno, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.permiso_auxiliar.hasNinguno)
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Actualizar Empleado" class="btn btn-primary btn-md" />
+            </div>
+            <a style="color:red"><small><i>Esta accion se reportará.</i></small></a>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="/Scripts/jquery-3.7.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#rol_auxiliar_isProprietario").on("change", function () {
+                if ($('#rol_auxiliar_isProprietario').prop('checked')) {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', true);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', false);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', false);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', false);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', false);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", true);
+
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+
+                } else {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', false);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', false);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', false);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', false);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', false);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", false);
+
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+                }
+            });
+
+            $("#rol_auxiliar_isAdministrador").on("change", function () {
+                if ($('#rol_auxiliar_isAdministrador').prop('checked')) {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', false);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', true);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', true);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', true);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', false);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", true);
+
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+
+                } else {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', false);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', false);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', false);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', false);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', false);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", false);
+
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+                }
+            });
+
+            $("#rol_auxiliar_isContribuidor").on("change", function () {
+                if ($('#rol_auxiliar_isContribuidor').prop('checked')) {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', false);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', false);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', true);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', true);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', false);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", true);
+
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+
+                } else {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', false);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', false);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', false);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', false);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', false);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", false);
+
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+                }
+            });
+
+            $("#rol_auxiliar_isLector").on("change", function () {
+                if ($('#rol_auxiliar_isLector').prop('checked')) {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', false);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', false);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', false);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', true);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', false);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", true);
+
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+
+                } else {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', false);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', false);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', false);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', false);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', false);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", false);
+
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+                }
+            });
+
+            $("#rol_auxiliar_isInvitado").on("change", function () {
+                if ($('#rol_auxiliar_isInvitado').prop('checked')) {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', false);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', false);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', false);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', false);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", true);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', true);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", false);
+
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                } else {
+
+                    $('#permiso_auxiliar_hasAccesoTotal').prop('checked', false);
+                    $('#permiso_auxiliar_hasAccesoTotal').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEjecucion').prop('checked', false);
+                    $('#permiso_auxiliar_hasEjecucion').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasEscritura').prop('checked', false);
+                    $('#permiso_auxiliar_hasEscritura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasLectura').prop('checked', false);
+                    $('#permiso_auxiliar_hasLectura').attr("disabled", false);
+
+                    $('#permiso_auxiliar_hasNinguno').prop('checked', false);
+                    $('#permiso_auxiliar_hasNinguno').attr("disabled", false);
+
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                }
+            });
+
+            $("#permiso_auxiliar_hasAccesoTotal").on("click", function () {
+                if ($('#permiso_auxiliar_hasAccesoTotal').prop('checked')) {
+                    $('#rol_auxiliar_isProprietario').prop('checked', true);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+                    $('#rol_auxiliar_isProprietario').trigger("change");
+                }
+            });
+
+            $("#permiso_auxiliar_hasEjecucion").on("click", function () {
+                if ($('#permiso_auxiliar_hasEjecucion').prop('checked')) {
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', true);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').trigger("change");
+                }
+            });
+
+            $("#permiso_auxiliar_hasEscritura").on("click", function () {
+                if ($('#permiso_auxiliar_hasEscritura').prop('checked')) {
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', true);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').trigger("change");
+                }
+            });
+
+            $("#permiso_auxiliar_hasLectura").on("click", function () {
+                if ($('#permiso_auxiliar_hasLectura').prop('checked')) {
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', true);
+                    $('#rol_auxiliar_isInvitado').prop('checked', false);
+                    $('#rol_auxiliar_isLector').trigger("change");
+                }
+            });
+
+            $("#permiso_auxiliar_hasNinguno").on("click", function () {
+                if ($('#permiso_auxiliar_hasNinguno').prop('checked')) {
+                    $('#rol_auxiliar_isProprietario').prop('checked', false);
+                    $('#rol_auxiliar_isAdministrador').prop('checked', false);
+                    $('#rol_auxiliar_isContribuidor').prop('checked', false);
+                    $('#rol_auxiliar_isLector').prop('checked', false);
+                    $('#rol_auxiliar_isInvitado').prop('checked', true);
+                    $('#rol_auxiliar_isInvitado').trigger("change");
+                }
+            });
+        });
+    </script>
+}

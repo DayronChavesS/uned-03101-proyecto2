@@ -1,0 +1,56 @@
+﻿@model IEnumerable<chaves_dayron_proyecto2_3101.Models.list_empleados>
+
+@{
+    ViewBag.Title = "Lista de Empleados";
+}
+
+<h2>Lista de Empleados</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.empleado_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.departamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.puesto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.empleado_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.departamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.puesto)
+        </td>
+        <td>
+            @using (Html.BeginForm("EditEmpleado", "Home", FormMethod.Get))
+            {
+                @Html.Hidden("empleado_id", item.empleado_id)
+                <input type="Submit" value="Editar Empleado" class="btn btn-primary btn-md" />
+            }
+        </td>
+    </tr>
+}
+
+</table>

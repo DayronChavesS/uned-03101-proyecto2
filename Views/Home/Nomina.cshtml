@@ -1,0 +1,101 @@
+﻿@using chaves_dayron_proyecto2_3101.Models
+@model chaves_dayron_proyecto2_3101.Models.nomina_model
+
+@{
+    ViewBag.Title = "Nomina";
+}
+
+<h2>Nomina</h2>
+<div>
+    @Html.ActionLink("Preferencias", "Salario", "Home")
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaDetalle[0].nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaDetalle[0].apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaDetalle[0].departamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaDetalle[0].puesto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaDetalle[0]._base)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaDetalle[0].bonificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaDetalle[0].deduccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaDetalle[0].final)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.NominaDetalle)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.puesto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._base)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bonificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.deduccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.final)
+            </td>
+        </tr>
+    }
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaSumatoria._base)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaSumatoria.bonificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaSumatoria.deduccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominaSumatoria.final)
+        </th>
+    </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.NominaSumatoria._base)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.NominaSumatoria.bonificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.NominaSumatoria.deduccion)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.NominaSumatoria.final)
+            </td>
+        </tr>
+</table>

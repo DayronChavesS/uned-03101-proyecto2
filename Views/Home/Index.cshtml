@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "chaves-dayron-proyecto2-3101";
+}
+
+@{
+    if (ViewData["success"] != null)
+    {
+        <h5 class="alert alert-success">@ViewData["success"]</h5>
+    }
+
+    if (ViewData["failure"] != null)
+    {
+        <h5 class="alert alert-danger">@ViewData["failure"]</h5>
+    }
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">Sistema de RR.HH de Tu Empresa</h1>
+        <p class="lead">Haga clic en uno de los modulos de la parte inferior para iniciar:</p>
+    </section>
+
+    <hr />
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="librariesTitle">
+            <h2 id="Title">Registro de Empleados</h2>
+            <p>
+                Un formulario donde podra añadir los datos personales y la informacion laboral de una persona.
+            </p>
+            @Html.ActionLink("Añadir nuevo empleado »", "AddEmpleado1", "Home", new { @class = "btn btn-primary btn-md" })
+        </section>
+
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <h2 id="Title"> Gestión de Perfiles de Empleados</h2>
+            <p>
+                Obtendra una lista con todos los empleados de la empresa; al selecionar uno, podra editar su informacion y asignar roles y permisos.
+            </p>
+            @Html.ActionLink("Ver lista de empleados »", "ListEmpleados", "Home", new { @class = "btn btn-primary btn-md" })
+        </section>
+
+        <section class="col-md-4" aria-labelledby="hostingTitle">
+            <h2 id="Title">Programación de Turnos</h2>
+            <p>
+                Obtendra una lista de dias del mes actual; alli podra visualizar y asignar turnos, extras y libres a los empleados.
+            </p>
+            @Html.ActionLink("Gestionar horarios »", "Horario", "Home", new { @class = "btn btn-primary btn-md" })
+        </section>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="librariesTitle">
+            <h2 id="Title">Gestión de Nóminas</h2>
+            <p>
+                Obtendra una tabla con el detalle de todos los empleados en la empresa, sus salarios, bonificaciones y deducciones.
+                La base de datos calcula y asigna automaticamente todos estos datos.
+            </p>
+            @Html.ActionLink("Ver nomina »", "Nomina", "Home", new { @class = "btn btn-primary btn-md" })
+        </section>
+
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <h2 id="Title">Programar una Reunion</h2>
+            <p>
+                Un formulario para agendar una reunion con un empleado.
+            </p>
+            @Html.ActionLink("Agendar reunion »", "CrearReunion", "Home", new { @class = "btn btn-primary btn-md" })
+        </section>
+
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <h2 id="Title">Evaluación del Rendimiento</h2>
+            <p>
+                Un formulario para documentar la reunion con el empleado.
+            </p>
+            @Html.ActionLink("Realizar reunion »", "NewEvaluacion1", "Home", new { @class = "btn btn-primary btn-md" })
+        </section>
+    </div>
+
+    <hr />
+
+    <p>
+        UNIVERSIDAD ESTATAL A DISTANCIA <br />
+        ESCUELA CIENCIAS EXACTAS Y NATURALES <br />
+        PROGRAMA DE INFORMÁTICA <br />
+        CÁTEDRA DESARROLLO DE SOFTWARE <br />
+        <br />
+        Proyecto 2 <br />
+        Web App - Gestion de Empleados<br />
+        <br />
+        Nombre del Curso: Programacion Avanzada Web<br />
+        Grupo No. 01<br />
+        Nombre del Tutor: Roberth Brunner Aguero<br />
+        <br />
+        Nombre Completo: Chaves Sandoval Dayron Antony<br />
+        Número de cédula: 3-524-018<br />
+        <br />
+        Centro Universitario de Turrialba<br />
+        <br />
+        19 de Agosto<br />
+        II CUATRIMESTRE 2024<br />
+    </p>
+</main>

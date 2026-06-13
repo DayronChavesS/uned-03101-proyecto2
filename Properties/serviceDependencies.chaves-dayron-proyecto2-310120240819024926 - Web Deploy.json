@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "mssql3": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "AzureConnctionStrings"
+    },
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/chaves-dayron-proyecto2-310120240819024926/providers/Microsoft.ServiceLinker/linkers/AzureConnectionString_43ED99B8B2",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/chaves-dayron-proyecto2-3101dbserver/databases/chaves-dayron-proyecto2-3101_db",
+      "type": "mssql.azure",
+      "connectionId": "AzureConnectionString",
+      "dynamicId": null
+    }
+  }
+}
